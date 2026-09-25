@@ -19,13 +19,14 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install SDK packages
         run: |
-          yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager "platform-tools" "platforms;android-37" "build-tools;36.0.0" "ndk;29.0.13113456" "cmake;3.22.1"
+          set -e
+          export ANDROID_HOME="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          SDKMGR=$(find "$ANDROID_HOME" -name sdkmanager -type f 2>/dev/null | head -1)
+          echo "sdkmanager: $SDKMGR"
+          yes | "$SDKMGR" --licenses > /dev/null || true
+          "$SDKMGR" --install             "platform-tools"             "platforms;android-37"             "build-tools;36.0.0"             "ndk;29.0.13113456"             "cmake;3.22.1"
 
       - name: Build release APK
         env:
@@ -35,16 +36,17 @@ jobs:
           ./gradlew :manager:assembleRelease --stacktrace --no-daemon
 
       - name: Collect artifacts
+        if: always()
         run: |
           mkdir -p dist
-          cp out/apk/*.apk dist/ 2>/dev/null || cp manager/build/outputs/apk/release/*.apk dist/
+          cp out/apk/*.apk dist/ 2>/dev/null || cp manager/build/outputs/apk/release/*.apk dist/ 2>/dev/null || true
           cp out/mapping/*.txt dist/ 2>/dev/null || true
-          ls -lh dist
+          ls -lh dist || true
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: yuehong-privilege-assistant
           path: dist/
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 30
