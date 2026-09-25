@@ -24,20 +24,24 @@ jobs:
           export ANDROID_HOME="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           SDKMGR=$(find "$ANDROID_HOME" -name sdkmanager -type f | head -1)
           echo "sdkmanager: $SDKMGR"
-          yes | "$SDKMGR" --licenses > /dev/null || true
+          yes | "$SDKMGR" --licenses > /dev/null 2>&1 || true
           for pkg in "platform-tools" "build-tools;36.0.0" "ndk;29.0.13113456" "cmake;3.22.1"; do
             echo ">>> install $pkg"
-            "$SDKMGR" --install "$pkg" || echo "WARN: failed $pkg"
+            "$SDKMGR" --install "$pkg" 2>&1 | tail -2 || echo "WARN: failed $pkg"
           done
-          echo ">>> install platforms;android-37 (channel all)"
-          if ! "$SDKMGR" --install "platforms;android-37" --channel=1; then
-            echo "android-37 not found, falling back to highest available platform"
-            "$SDKMGR" --list
-            PLAT=$("$SDKMGR" --list 2>/dev/null | grep -oE 'platforms;android-[0-9]+' | sort -V | tail -1)
-            echo "fallback: $PLAT"
-            "$SDKMGR" --install "$PLAT"
-          fi
-          "$SDKMGR" --list_installed
+          echo ">>> available platforms in repo:"
+          "$SDKMGR" --list 2>/dev/null | grep -E 'platforms;android-3' || true
+          echo ">>> try install platforms;android-37 across channels:"
+          for ch in 0 1 2 3; do
+            if "$SDKMGR" --install "platforms;android-37" --channel=$ch 2>&1 | tee /tmp/inst.log | grep -qi 'done\|100%'; then
+              echo "installed with channel $ch"; break
+            fi
+            grep -o "Failed to find package.*" /tmp/inst.log || true
+          done || true
+          echo ">>> installed:"
+          "$SDKMGR" --list_installed 2>/dev/null || true
+          ls "$ANDROID_HOME/platforms" || true
+          exit 0
 
       - name: Build release APK
         env:
