@@ -1,6 +1,6 @@
 # 开源发行说明
 
-此目录是月虹提权助手 v1.5.4 的公开源码快照，来源于当前权威开发仓库。
+此目录是Eri提权助手 v1.5.4 的公开源码快照，来源于当前权威开发仓库。
 
 ## 已移除的私有内容
 
@@ -23,7 +23,7 @@ pwsh -NoProfile -File .\tools\verify_public_source.ps1
 
 ## 许可证映射
 
-- 组合发行版、Stellar 与月虹修改文件：MPL-2.0。
+- 组合发行版、Stellar 与Eri修改文件：MPL-2.0。
 - Shizuku 兼容层：Apache-2.0。
 - GhostLock：Apache-2.0。
 - KSuRoot 动态载荷组件：Apache-2.0。

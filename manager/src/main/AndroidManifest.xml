@@ -55,7 +55,7 @@
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/yuehong_original_launcher"
         android:roundIcon="@mipmap/yuehong_original_launcher"
-        android:label="月虹提权助手"
+        android:label="Eri提权助手"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"

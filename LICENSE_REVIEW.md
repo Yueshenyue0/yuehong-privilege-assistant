@@ -5,7 +5,7 @@
 - 上游：https://github.com/roro2239/Stellar
 - Stellar 修改部分：Mozilla Public License 2.0（MPL-2.0）。
 - Stellar 中保留的 Shizuku 原始代码：Apache License 2.0。
-- 本工程的月虹集成与修改部分继续采用 MPL-2.0。
+- 本工程的Eri集成与修改部分继续采用 MPL-2.0。
 
 ## GhostLock
 
@@ -23,6 +23,6 @@
 ## 组合发行方式
 
 - 根目录 `LICENSE`：MPL-2.0。
-- Stellar 与月虹修改文件：MPL-2.0。
+- Stellar 与Eri修改文件：MPL-2.0。
 - GhostLock、KSuRoot 与 Shizuku 文件：Apache-2.0。
 - `NOTICE.md` 列出上游来源和本工程修改范围。

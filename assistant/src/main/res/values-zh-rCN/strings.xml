@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">月虹提权助手</string>
+    <string name="app_name">Eri提权助手</string>
     <string name="local_adb">本地 ADB</string>
     <string name="local_adb_subtitle">安全、可控的 Stellar Shell 工作台</string>
     <string name="shizuku_page_title">激活 Stellar</string>
@@ -8,7 +8,7 @@
     <string name="shizuku_checking_title">正在检查运行环境</string>
     <string name="shizuku_checking_body">正在确认 Stellar 服务状态与当前授权。</string>
     <string name="shizuku_authorize_title">需要一次授权</string>
-    <string name="shizuku_authorize_body">请在授权页面中允许月虹提权助手使用 Stellar。</string>
+    <string name="shizuku_authorize_body">请在授权页面中允许Eri提权助手使用 Stellar。</string>
     <string name="shizuku_authorized_title">连接成功</string>
     <string name="shizuku_authorized_body">Stellar 权限已经就绪，可以安全进入命令工作台。</string>
     <string name="shizuku_not_running_title">Stellar 尚未激活</string>
@@ -95,8 +95,8 @@
     <string name="announcement_version_label">服务器版本</string>
     <string name="announcement_author_label">作者</string>
     <string name="local_version_label">本地版本</string>
-    <string name="announcement_author_fallback">酷安@月虹yh</string>
-    <string name="announcement_default_text">欢迎使用月虹提权助手。</string>
+    <string name="announcement_author_fallback">Eri</string>
+    <string name="announcement_default_text">欢迎使用Eri提权助手。</string>
     <string name="update_required_title">需要更新</string>
     <string name="update_badge">版本更新</string>
     <string name="update_required_subtitle">请安装最新版本后继续使用</string>

@@ -19,7 +19,7 @@ android {
         versionCode rootProject.ext.yuehongVersionCode
         versionName rootProject.ext.yuehongVersionName
 
-        // 月虹提权助手与 GhostLock 运行目标均为 64 位 ARM 真机；去除模拟器/32 位重复库。
+        // Eri提权助手与 GhostLock 运行目标均为 64 位 ARM 真机；去除模拟器/32 位重复库。
         ndk {
             abiFilters 'arm64-v8a'
         }
@@ -129,7 +129,7 @@ afterEvaluate {
 }
 android.applicationVariants.configureEach { variant ->
     variant.outputs.configureEach {
-        outputFileName = "月虹提权助手-${variant.versionName}-${variant.name}.apk"
+        outputFileName = "Eri提权助手-${variant.versionName}-${variant.name}.apk"
 
         variant.assembleProvider.get().doLast {
             def outDir = new File(rootDir, "out")

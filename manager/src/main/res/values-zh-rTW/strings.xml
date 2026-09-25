@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">月虹提权助手</string>
+    <string name="app_name" translatable="false">Eri提权助手</string>
     <!-- ADB Restricted -->
     <string name="adb_restricted_hint_title">ADB 權限受限</string>
     <string name="adb_restricted_hint_message">目前的 ADB 環境受到系統限制，部分 API 功能可能無法正常運作。</string>

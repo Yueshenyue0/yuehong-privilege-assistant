@@ -1,6 +1,6 @@
-# 月虹提权助手
+# Eri提权助手
 
-月虹提权助手是一个内置 Stellar Manager、Server 与 API 的 Android 提权工作台。应用不再依赖外部 Shizuku 或外部 Stellar 管理器，可直接在应用内通过 Android 无线调试完成 Stellar 自激活，再使用 `Stellar.newProcess()` 执行命令。
+Eri提权助手是一个内置 Stellar Manager、Server 与 API 的 Android 提权工作台。应用不再依赖外部 Shizuku 或外部 Stellar 管理器，可直接在应用内通过 Android 无线调试完成 Stellar 自激活，再使用 `Stellar.newProcess()` 执行命令。
 
 - 应用 ID：`roro.stellar.yuehong`
 - 版本：`v1.5.4`（`versionCode 154`）
@@ -23,7 +23,7 @@
 ## 源码结构
 
 ```text
-assistant/  月虹提权助手 UI、启动验证、设备匹配、多线路下载和提权业务
+assistant/  Eri提权助手 UI、启动验证、设备匹配、多线路下载和提权业务
 manager/    Android 宿主、自激活界面、无线调试、授权与 Binder 接收组件
 server/     以 ADB shell 或 Root 身份运行的 Stellar 特权服务
 api/        随工程固定版本交付的 Stellar API、AIDL、Provider 与共享代码
@@ -31,7 +31,7 @@ shizuku/    Stellar 内部保留的 Shizuku 兼容层
 LICENSES/   第三方许可证文本
 ```
 
-`assistant` 是 Android Library，最终由 `manager` 打包成唯一 APK。桌面唯一入口仍是月虹提权助手的 `roro.stellar.yuehong.activities.MainActivity`；Stellar 原管理器首页、更新器入口和安装未知 APK 权限不进入发行 Manifest。
+`assistant` 是 Android Library，最终由 `manager` 打包成唯一 APK。桌面唯一入口仍是Eri提权助手的 `roro.stellar.yuehong.activities.MainActivity`；Stellar 原管理器首页、更新器入口和安装未知 APK 权限不进入发行 Manifest。
 
 ## 三个主要上游项目
 
@@ -59,7 +59,7 @@ channelJoinUrl=
 updateUrl=
 ```
 
-`moduleId` 应填写为构建者自己服务端配置的模块 ID；示例文件不携带月虹正式服务的模块 ID 或其他运营配置。
+`moduleId` 应填写为构建者自己服务端配置的模块 ID；示例文件不携带Eri正式服务的模块 ID 或其他运营配置。
 
 公开源码不包含运营域名、接口路径、模块标识、公钥、key ID、频道链接、更新地址、签名口令或密钥库。需要联网功能时，由构建者在本地复制示例文件后填写自己的 HTTPS 服务和协议密钥。`server.properties`、签名属性和密钥库不会进入公开源码包。
 
@@ -92,7 +92,7 @@ Windows 中文路径下请使用工程自带脚本。脚本会创建一个仅在
 Release 签名读取根目录下由构建者自行创建的 `keystore.properties`；公开源码不附带任何发行密钥或签名属性。主要产物会同步到：
 
 ```text
-out/apk/月虹提权助手-v1.5.4-release.apk
+out/apk/Eri提权助手-v1.5.4-release.apk
 out/mapping/mapping-v1.5.4.txt
 ```
 
@@ -108,8 +108,8 @@ out/mapping/mapping-v1.5.4.txt
 
 本工程是一个由不同许可证文件组成的组合项目。组合发行版以 MPL-2.0 为顶层许可证，原有文件继续保留各自许可证：
 
-- 月虹提权助手集成与修改部分遵循 MPL-2.0。
-- Stellar 与月虹修改文件遵循 MPL-2.0，完整文本位于 [LICENSES/MPL-2.0.txt](LICENSES/MPL-2.0.txt)。
+- Eri提权助手集成与修改部分遵循 MPL-2.0。
+- Stellar 与Eri修改文件遵循 MPL-2.0，完整文本位于 [LICENSES/MPL-2.0.txt](LICENSES/MPL-2.0.txt)。
 - Stellar 中源自 Shizuku 的文件保留 Apache-2.0。
 - GhostLock 源码保留 Apache-2.0。
 - KSuRoot 动态载荷组件保留 Apache-2.0。

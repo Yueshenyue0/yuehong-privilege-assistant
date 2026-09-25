@@ -15,23 +15,15 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import roro.stellar.yuehong.BuildConfig
 import roro.stellar.yuehong.ghostlock.GhostLockActivity
-import roro.stellar.yuehong.shell.HttpStartupVerificationApi
-import roro.stellar.yuehong.shell.StartupVerification
-import roro.stellar.yuehong.shell.StartupVerificationResult
 
 private enum class AppPage {
-    Announcement,
-    ChannelVerification,
     ModeSelection,
 }
 
@@ -40,11 +32,9 @@ fun StellarAssistantApp() {
     StellarTheme {
         val context = LocalContext.current
         BackHandler { (context as? Activity)?.moveTaskToBack(true) }
-        val startupVerificationApi = remember(context.applicationContext) {
-            HttpStartupVerificationApi(context.applicationContext)
-        }
-        var page by rememberSaveable { mutableStateOf(AppPage.Announcement) }
-        var startupRefreshGeneration by rememberSaveable { mutableIntStateOf(0) }
+
+        var page by rememberSaveable { mutableStateOf(AppPage.ModeSelection) }
+
         val kernelRelease = remember {
             runCatching { Os.uname().release }.getOrNull().orEmpty().ifBlank {
                 System.getProperty("os.version", "unknown")
@@ -100,27 +90,6 @@ fun StellarAssistantApp() {
             label = "app-page-transition",
         ) { activePage ->
             when (activePage) {
-                AppPage.Announcement -> AnnouncementGate(
-                    api = startupVerificationApi,
-                    refreshGeneration = startupRefreshGeneration,
-                    onContinue = { verification ->
-                        if (verification.authorized) page = AppPage.ModeSelection
-                        else page = AppPage.ChannelVerification
-                    },
-                    onRetry = { startupRefreshGeneration++ },
-                    onExit = { (context as? Activity)?.moveTaskToBack(true) },
-                )
-
-                AppPage.ChannelVerification -> ChannelVerificationScreen(
-                    api = startupVerificationApi,
-                    onVerified = { page = AppPage.ModeSelection },
-                    onStartupInvalidated = {
-                        startupRefreshGeneration++
-                        page = AppPage.Announcement
-                    },
-                    onExit = { (context as? Activity)?.moveTaskToBack(true) },
-                )
-
                 AppPage.ModeSelection -> ModeSelectionScreen(
                     ghostLockKernelAvailable = ghostLockKernelAvailable,
                     onOpenGhostLock = ::openGhostLockMode,
@@ -133,42 +102,3 @@ fun StellarAssistantApp() {
 }
 
 private val GHOSTLOCK_KERNEL_PATTERN = Regex("^6\\.")
-
-@Composable
-private fun AnnouncementGate(
-    api: HttpStartupVerificationApi,
-    refreshGeneration: Int,
-    onContinue: (StartupVerification) -> Unit,
-    onRetry: () -> Unit,
-    onExit: () -> Unit,
-) {
-    var verificationResult by remember { mutableStateOf<StartupVerificationResult?>(null) }
-
-    LaunchedEffect(api, refreshGeneration) {
-        verificationResult = null
-        verificationResult = api.verifyStartup()
-    }
-
-    val result = verificationResult
-    AnimatedContent(
-        targetState = result,
-        transitionSpec = {
-            fadeIn(tween(260, easing = FastOutSlowInEasing)) togetherWith
-                fadeOut(tween(180))
-        },
-        label = "announcement-loading-transition",
-    ) { loadedResult ->
-        if (loadedResult == null) {
-            AnnouncementLoadingScreen()
-        } else {
-            AnnouncementScreen(
-                result = loadedResult,
-                localVersion = BuildConfig.VERSION_NAME,
-                localVersionCode = BuildConfig.VERSION_CODE,
-                    onContinue = onContinue,
-                    onRetry = onRetry,
-                    onExit = onExit,
-            )
-        }
-    }
-}

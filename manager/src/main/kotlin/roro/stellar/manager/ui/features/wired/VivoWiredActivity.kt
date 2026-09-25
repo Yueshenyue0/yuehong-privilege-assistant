@@ -212,7 +212,7 @@ class VivoWiredActivity : ComponentActivity() {
 internal class VivoWiredViewModel(application: Application) : AndroidViewModel(application) {
     private val app = application.applicationContext
     private val usbManager = app.getSystemService(UsbManager::class.java)
-    private val adbKey = AdbKey(PreferenceAdbKeyStore(StellarSettings.getPreferences()), "YueHong-Wired")
+    private val adbKey = AdbKey(PreferenceAdbKeyStore(StellarSettings.getPreferences()), "Eri-Wired")
     private val _state = MutableStateFlow(VivoWiredProgress())
     val state: StateFlow<VivoWiredProgress> = _state.asStateFlow()
     private var permissionWaiter: CompletableDeferred<Boolean>? = null
@@ -276,7 +276,7 @@ internal class VivoWiredViewModel(application: Application) : AndroidViewModel(a
             }
             is AdbConsoleCommand.Local -> {
                 if (parsed.name == "version") {
-                    appendAdbTestLog("月虹 USB ADB Host v1.3")
+                    appendAdbTestLog("Eri USB ADB Host v1.3")
                     _state.value = _state.value.copy(status = "ADB Host 版本信息已写入日志")
                     return
                 }

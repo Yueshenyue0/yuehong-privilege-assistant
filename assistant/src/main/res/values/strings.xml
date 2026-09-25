@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">月虹提权助手</string>
+    <string name="app_name">Eri提权助手</string>
     <string name="local_adb">Local ADB</string>
     <string name="local_adb_subtitle">A secure, controlled Stellar Shell workspace</string>
     <string name="shizuku_page_title">Activate Stellar</string>
@@ -8,7 +8,7 @@
     <string name="shizuku_checking_title">Checking the environment</string>
     <string name="shizuku_checking_body">Confirming the Stellar service and current authorization.</string>
     <string name="shizuku_authorize_title">Authorization required</string>
-    <string name="shizuku_authorize_body">Allow YueHong Privilege Assistant to use Stellar in the authorization prompt.</string>
+    <string name="shizuku_authorize_body">Allow Eri Privilege Assistant to use Stellar in the authorization prompt.</string>
     <string name="shizuku_authorized_title">Connected</string>
     <string name="shizuku_authorized_body">Stellar is ready. The command workspace can now open safely.</string>
     <string name="shizuku_not_running_title">Stellar is not active</string>
@@ -96,8 +96,8 @@
     <string name="announcement_version_label">Server version</string>
     <string name="announcement_author_label">Author</string>
     <string name="local_version_label">Local version</string>
-    <string name="announcement_author_fallback">Coolapk @ YueHong yh</string>
-    <string name="announcement_default_text">Welcome to YueHong Privilege Assistant.</string>
+    <string name="announcement_author_fallback">Eri</string>
+    <string name="announcement_default_text">Welcome to Eri Privilege Assistant.</string>
     <string name="update_required_title">Update required</string>
     <string name="update_badge">VERSION UPDATE</string>
     <string name="update_required_subtitle">Install the latest version before continuing</string>

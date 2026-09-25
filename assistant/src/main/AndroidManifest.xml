@@ -9,7 +9,7 @@
             android:enableOnBackInvokedCallback="true"
             android:exported="false"
             android:label="@string/ghostlock_app_name"
-            android:theme="@style/Theme.YueHong.GhostLock" />
+            android:theme="@style/Theme.Eri.GhostLock" />
         <activity
             android:name=".activities.MainActivity"
             android:alwaysRetainTaskState="true"

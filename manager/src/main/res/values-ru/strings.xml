@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">月虹提权助手</string>
+    <string name="app_name" translatable="false">Eri提权助手</string>
     <!-- ADB Restricted -->
     <string name="adb_restricted_hint_title">Ограничение ADB</string>
     <string name="adb_restricted_hint_message">Текущее окружение ADB ограничено системой. Некоторые функции API могут работать некорректно.</string>
